@@ -57,7 +57,7 @@ class HomeController extends Controller
             -> when($system_type, function ($query) use ($system_type) {
                 $query->where('system_type', $system_type);
             })
-        ->get();
+        ->select()->paginate(10);;
 
 
         return view('home',$data);

@@ -9,7 +9,7 @@
             </div>
 
             <ul class="list-group nav navbar-nav" style="text-align: center;">
-                <a href="#"><li class="list-group-item active" style="padding: 20px;">服务器列表</li></a>
+                <a href="/home"><li class="list-group-item active" style="padding: 20px;">服务器列表</li></a>
                 <a href="#"><li class="list-group-item">Web服务器</li></a>
                 <a href="#"><li class="list-group-item">币服务器</li></a>
                 <a href="#"><li class="list-group-item">物理内存</li></a>
@@ -22,40 +22,52 @@
         </div>
 
         <div class="col-md-10">
-            <button type="button" class="btn btn-success"><span style="font-weight: 900; font-size:large;">+</span>&nbsp新增</button>
+            <button type="button" class="btn btn-success"><a href="#"><span style="font-weight: 900; font-size:large;">+</span>&nbsp新增</a></button>
             <div style="float: right; margin: 10px 20px 10px 20px">
                 <form role="form" action="/home" method="get">
+                    <?php
+                        $get_categroy = isset($_GET['categroy']) ? $_GET['categroy'] : '';
+                    ?>
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="categroy" id="categroy">
-                            <option></option>
-                            <option>币服务器</option>
-                            <option>web服务器</option>
+                            <option value=""></option>
+                            <option value="币服务器" @if($get_categroy == '币服务器') selected @endif>币服务器</option>}
+                            <option value="web服务器" @if($get_categroy == 'web服务器') selected @endif>web服务器</option>
                         </select>
                     </div>
 
+                    <?php
+                    $get_item = isset($_GET['item']) ? $_GET['item'] : '';
+                    ?>
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="item" id="item">
-                                <option></option>
+                                <option value=""></option>
                         @foreach($item as $items)
-                                <option value="{{$items->item}}">{{$items->item}}</option>
+                                <option value="{{$items->item}}" @if($get_item == $items->item) selected @endif>{{$items->item}}</option>
                             @endforeach
                         </select>
                     </div>
 
+                    <?php
+                    $get_currency = isset($_GET['currency']) ? $_GET['currency'] : '';
+                    ?>
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="currency" id="currency">
-                            <option></option>
+                            <option value=""></option>
                             @foreach($currency as $items)
-                            <option value="{{$items->currency}}">{{$items->currency}}</option>
+                            <option value="{{$items->currency}}" @if($get_currency == $items->currency) selected @endif>{{$items->currency}}</option>
                             @endforeach
                         </select>
                     </div>
 
+                    <?php
+                    $get_system_type = isset($_GET['system_type']) ? $_GET['system_type'] : '';
+                    ?>
                     <div class="form-group" style="float: left; margin: 0 30px 0 10px">
                         <select class="form-control" name="system_type" id="system_type">
                             <option></option>
                             @foreach($system_type as $items)
-                                <option value="{{$items->system_type}}">{{$items->system_type}}</option>
+                                <option value="{{$items->system_type}}" @if($get_system_type == $items->system_type) selected @endif>{{$items->system_type}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -109,6 +121,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $ip->links() }}
         </div>
     </div>
 </div>
