@@ -84,11 +84,11 @@
                 <?php $a = 0;  ?>
                 @foreach($ip as $item)
                     <tr>
-                        <td><?php $a++ ; echo $a; ?></td>
+                        <th><?php $a++ ; echo $a; ?></th>
                         @if($item->categroy == 0)
-                        <th>币服务器</th>
+                        <td>币服务器</td>
                         @else
-                        <th>web服务器</th>
+                        <td>web服务器</td>
                         @endif
                         <td>{{$item->item}}</td>
                         <td>{{$item->currency}}</td>
