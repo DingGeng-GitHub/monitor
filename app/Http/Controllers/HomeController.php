@@ -34,6 +34,7 @@ class HomeController extends Controller
         $item = $request->item;
         $currency = $request->currency;
         $system_type = $request->system_type;
+        $ip = trim($request->ip);
 
         if(!is_null($categroy)){
             if($request->categroy == 'web服务器'){
@@ -57,10 +58,15 @@ class HomeController extends Controller
             -> when($system_type, function ($query) use ($system_type) {
                 $query->where('system_type', $system_type);
             })
-        ->select()->paginate(10);;
+            -> when($ip, function ($query) use ($ip) {
+                $query->where('IP', $ip);
+            })
+            -> when($ip, function ($query) use ($ip) {
+                $query->where('Intranet_ip', $ip);
+            })
+            ->where('status',0)->select()->paginate(10);
 
-
-        return view('home',$data);
+        return view('home.home',$data);
     }
 
 
