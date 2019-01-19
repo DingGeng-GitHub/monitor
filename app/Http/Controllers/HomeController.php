@@ -41,7 +41,7 @@ class HomeController extends Controller
         $system_type = $request->system_type;
 
         $data['ip'] = IpList
-            ::when($categroy, function ($query) use ($categroy) {
+            ::when(!is_null($categroy), function ($query) use ($categroy) {
                 $query->where('categroy', $categroy);
             })
             ->when($item, function ($query) use ($item) {

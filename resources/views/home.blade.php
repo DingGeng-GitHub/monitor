@@ -67,6 +67,7 @@
             <table class="table table-hover">
                 <thead style="background-color: #3490DC">
                     <tr>
+                        <th>序号</th>
                         <th>分类</th>
                         <th>项目</th>
                         <th>币种</th>
@@ -80,8 +81,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php $a = 0;  ?>
                 @foreach($ip as $item)
                     <tr>
+                        <td><?php $a++ ; echo $a; ?></td>
                         @if($item->categroy == 0)
                         <th>币服务器</th>
                         @else
