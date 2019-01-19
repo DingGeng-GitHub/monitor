@@ -43,10 +43,9 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>前链</li>
-                    <li>U3</li>
-                    <li>U2</li>
-                    <li>华币</li>
+                    @foreach($item as $items)
+                    <li>{{$items->item}}</li>
+                    @endforeach
                     <li role="separator" class="divider"></li>
                 </ul>
             </div>

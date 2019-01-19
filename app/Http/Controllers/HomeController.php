@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\IpList;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        // 所有服务器信息
         $data['ip'] = IpList::get();
+
+        $data['item'] = DB::table('ip_list')->select('item')->distinct()->get();
 
         return view('home',$data);
     }
