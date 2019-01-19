@@ -27,14 +27,16 @@
                 <form role="form" action="/home" method="get">
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="categroy" id="categroy">
-                            <option>web服务器</option>
+                            <option></option>
                             <option>币服务器</option>
+                            <option>web服务器</option>
                         </select>
                     </div>
 
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="item" id="item">
-                            @foreach($item as $items)
+                                <option></option>
+                        @foreach($item as $items)
                                 <option value="{{$items->item}}">{{$items->item}}</option>
                             @endforeach
                         </select>
@@ -42,6 +44,7 @@
 
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control" name="currency" id="currency">
+                            <option></option>
                             @foreach($currency as $items)
                             <option value="{{$items->currency}}">{{$items->currency}}</option>
                             @endforeach
@@ -50,6 +53,7 @@
 
                     <div class="form-group" style="float: left; margin: 0 30px 0 10px">
                         <select class="form-control" name="system_type" id="system_type">
+                            <option></option>
                             @foreach($system_type as $items)
                                 <option value="{{$items->system_type}}">{{$items->system_type}}</option>
                             @endforeach

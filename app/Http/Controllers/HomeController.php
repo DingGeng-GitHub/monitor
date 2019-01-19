@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $data['ip'] = IpList::get();
+
         $data['item'] = DB::table('ip_list')->select('item')->distinct()->get();
         $data['currency'] = DB::table('ip_list')->select('currency')->distinct()->get();
         $data['system_type'] = DB::table('ip_list')->select('system_type')->distinct()->get();
@@ -40,9 +40,21 @@ class HomeController extends Controller
         $currency = $request->currency;
         $system_type = $request->system_type;
 
-        $data['ip'] = IpList::where(['categroy'=>$categroy, 'item'=>$item, 'currency'=>$currency, 'system_type'=>$system_type])->get();
+        $data['ip'] = IpList
+            ::when($categroy, function ($query) use ($categroy) {
+                $query->where('categroy', $categroy);
+            })
+            ->when($item, function ($query) use ($item) {
+                $query->where('item', $item);
+            })
+            ->when($currency, function ($query) use ($currency) {
+                $query->where('currency', $currency);
+            })
+            -> when($system_type, function ($query) use ($system_type) {
+                $query->where('system_type', $system_type);
+            })
+            ->get();
 
-        //dd($data['ip']);
 
 
         return view('home',$data);
