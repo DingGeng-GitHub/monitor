@@ -23,14 +23,27 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $data['ip'] = IpList::get();
-
         $data['item'] = DB::table('ip_list')->select('item')->distinct()->get();
         $data['currency'] = DB::table('ip_list')->select('currency')->distinct()->get();
         $data['system_type'] = DB::table('ip_list')->select('system_type')->distinct()->get();
+
+        if($request->categroy == 'web服务器'){
+            $categroy = 1;
+        }else{
+            $categroy = 0;
+        }
+        $item = $request->item;
+        $currency = $request->currency;
+        $system_type = $request->system_type;
+
+        $data['ip'] = IpList::where(['categroy'=>$categroy, 'item'=>$item, 'currency'=>$currency, 'system_type'=>$system_type])->get();
+
+        //dd($data['ip']);
+
 
         return view('home',$data);
     }

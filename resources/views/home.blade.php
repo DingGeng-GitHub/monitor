@@ -24,16 +24,16 @@
         <div class="col-md-10">
             <button type="button" class="btn btn-success"><span style="font-weight: 900; font-size:large;">+</span>&nbsp新增</button>
             <div style="float: right; margin: 10px 20px 10px 20px">
-                <form role="form" action="" method="post">
+                <form role="form" action="/home" method="get">
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
-                        <select class="form-control">
+                        <select class="form-control" name="categroy" id="categroy">
                             <option>web服务器</option>
                             <option>币服务器</option>
                         </select>
                     </div>
 
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
-                        <select class="form-control">
+                        <select class="form-control" name="item" id="item">
                             @foreach($item as $items)
                                 <option value="{{$items->item}}">{{$items->item}}</option>
                             @endforeach
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group" style="float: left; margin: 0 10px 0 10px">
-                        <select class="form-control">
+                        <select class="form-control" name="currency" id="currency">
                             @foreach($currency as $items)
                             <option value="{{$items->currency}}">{{$items->currency}}</option>
                             @endforeach
@@ -49,15 +49,16 @@
                     </div>
 
                     <div class="form-group" style="float: left; margin: 0 30px 0 10px">
-                        <select class="form-control">
+                        <select class="form-control" name="system_type" id="system_type">
                             @foreach($system_type as $items)
                                 <option value="{{$items->system_type}}">{{$items->system_type}}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <button type="button" class="btn btn-success" id="button" onclick="button();">查询</button>
+                    <button type="submit" class="btn btn-success" {{--onclick="query();"--}}>查询</button>
                 </form>
+
             </div>
             <table class="table table-hover">
                 <thead style="background-color: #3490DC">
@@ -106,9 +107,34 @@
 </div>
 @endsection
 
-
+{{--
 <script type="text/javascript">
-    $("#button").click(function () {
-        alert(111);
-    });
+    function query() {
+        var categroy = document.getElementById('categroy').value;
+        var item = document.getElementById('item').value;
+        var currency = document.getElementById('currency').value;
+        var system_type = document.getElementById('system_type').value;
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/home',
+            data:{
+                categroy,item,currency,system_type
+            },
+            dataType: 'json',
+            async : 'false',    //同步
+            success: function(data){
+                console.log(data);
+                if(data.code==1){
+
+                }else{
+
+                }
+            }
+        });
+    }
 </script>
+--}}
