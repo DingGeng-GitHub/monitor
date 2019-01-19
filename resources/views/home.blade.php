@@ -23,21 +23,57 @@
 
         <div class="col-md-10">
             <button type="button" class="btn btn-success"><span style="font-weight: 900; font-size:large;">+</span>&nbsp新增</button>
+            <div style="float: right; margin: 10px 20px 10px 20px">
+                <form role="form">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>踢足球</option>
+                            <option>游泳</option>
+                            <option>慢跑</option>
+                            <option>跳舞</option>
+                        </select>
+                    </div>
 
-            <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
-                    币种
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>eth</li>
-                    <li>btc</li>
-                    <li>usdt</li>
-                    <li role="separator" class="divider"></li>
-                </ul>
+                    <div class="form-group" style="float: right">
+                        <select class="form-control">
+                            <option>踢足球</option>
+                            <option>游泳</option>
+                            <option>慢跑</option>
+                            <option>跳舞</option>
+                        </select>
+                    </div>
+                </form>
             </div>
+{{--
 
-            <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
+            <div style="float: right; margin: 10px 20px 10px 20px">
+                <form role="form">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>踢足球</option>
+                            <option>游泳</option>
+                            <option>慢跑</option>
+                            <option>跳舞</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+--}}
+
+            {{-- <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
+                     币种
+                     <span class="caret"></span>
+                 </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                     <li>eth</li>
+                     <li>btc</li>
+                     <li>usdt</li>
+                     <li role="separator" class="divider"></li>
+                 </ul>
+             </div>--}}
+
+ {{--           <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
                     项目
                     <span class="caret"></span>
@@ -48,8 +84,9 @@
                     @endforeach
                     <li role="separator" class="divider"></li>
                 </ul>
-            </div>
+            </div>--}}
 
+{{--
             <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
                     种类
@@ -61,6 +98,7 @@
                     <li role="separator" class="divider"></li>
                 </ul>
             </div>
+--}}
 
 
             <table class="table table-hover">
@@ -75,6 +113,7 @@
                         <th>系统</th>
                         <th>状态</th>
                         <th>时间</th>
+                        <th colspan="2" style="text-align: center">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,6 +136,8 @@
                         <td><img src="{{ asset('img/false.jpg') }}" height="25px" alt="#" class="img-rounded"></td>
                         @endif
                         <td>{{$item->created_at}}</td>
+                        <td><span class="glyphicon glyphicon-pencil"></span><a href="#"></a></td>
+                        <td><a href="#">删除</a></td>
                     </tr>
                 @endforeach
                 </tbody>
