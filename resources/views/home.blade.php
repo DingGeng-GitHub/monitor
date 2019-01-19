@@ -24,83 +24,41 @@
         <div class="col-md-10">
             <button type="button" class="btn btn-success"><span style="font-weight: 900; font-size:large;">+</span>&nbsp新增</button>
             <div style="float: right; margin: 10px 20px 10px 20px">
-                <form role="form">
-                    <div class="form-group">
+                <form role="form" action="" method="post">
+                    <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control">
-                            <option>踢足球</option>
-                            <option>游泳</option>
-                            <option>慢跑</option>
-                            <option>跳舞</option>
+                            <option>web服务器</option>
+                            <option>币服务器</option>
                         </select>
                     </div>
 
-                    <div class="form-group" style="float: right">
+                    <div class="form-group" style="float: left; margin: 0 10px 0 10px">
                         <select class="form-control">
-                            <option>踢足球</option>
-                            <option>游泳</option>
-                            <option>慢跑</option>
-                            <option>跳舞</option>
+                            @foreach($item as $items)
+                                <option value="{{$items->item}}">{{$items->item}}</option>
+                            @endforeach
                         </select>
                     </div>
+
+                    <div class="form-group" style="float: left; margin: 0 10px 0 10px">
+                        <select class="form-control">
+                            @foreach($currency as $items)
+                            <option value="{{$items->currency}}">{{$items->currency}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="float: left; margin: 0 30px 0 10px">
+                        <select class="form-control">
+                            @foreach($system_type as $items)
+                                <option value="{{$items->system_type}}">{{$items->system_type}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-success" id="button" onclick="button();">查询</button>
                 </form>
             </div>
-{{--
-
-            <div style="float: right; margin: 10px 20px 10px 20px">
-                <form role="form">
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option>踢足球</option>
-                            <option>游泳</option>
-                            <option>慢跑</option>
-                            <option>跳舞</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
---}}
-
-            {{-- <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
-                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
-                     币种
-                     <span class="caret"></span>
-                 </button>
-                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                     <li>eth</li>
-                     <li>btc</li>
-                     <li>usdt</li>
-                     <li role="separator" class="divider"></li>
-                 </ul>
-             </div>--}}
-
- {{--           <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
-                    项目
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    @foreach($item as $items)
-                    <li>{{$items->item}}</li>
-                    @endforeach
-                    <li role="separator" class="divider"></li>
-                </ul>
-            </div>--}}
-
-{{--
-            <div class="dropdown" style="margin: auto 30px 30px 30px; float: right">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:#C6FBFF; " >
-                    种类
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>币服务器</li>
-                    <li>web服务器</li>
-                    <li role="separator" class="divider"></li>
-                </ul>
-            </div>
---}}
-
-
             <table class="table table-hover">
                 <thead style="background-color: #3490DC">
                     <tr>
@@ -136,8 +94,9 @@
                         <td><img src="{{ asset('img/false.jpg') }}" height="25px" alt="#" class="img-rounded"></td>
                         @endif
                         <td>{{$item->created_at}}</td>
-                        <td><span class="glyphicon glyphicon-pencil"></span><a href="#"></a></td>
-                        <td><a href="#">删除</a></td>
+                        {{--<td><span class="glyphicon glyphicon-pencil"></span><a href="#"></a></td>--}}
+                        <td style="width: 50px; text-align: center; font-size: small"><a href="#">编辑</a></td>
+                        <td style="width: 50px; text-align: center; font-size: small"><a href="#">删除</a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -146,3 +105,10 @@
     </div>
 </div>
 @endsection
+
+
+<script type="text/javascript">
+    $("#button").click(function () {
+        alert(111);
+    });
+</script>

@@ -25,12 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // 所有服务器信息
+
         $data['ip'] = IpList::get();
 
         $data['item'] = DB::table('ip_list')->select('item')->distinct()->get();
+        $data['currency'] = DB::table('ip_list')->select('currency')->distinct()->get();
+        $data['system_type'] = DB::table('ip_list')->select('system_type')->distinct()->get();
 
         return view('home',$data);
     }
+
+
+
 }
 
