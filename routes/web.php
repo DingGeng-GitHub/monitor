@@ -22,3 +22,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::delete('/home/del', 'HomeController@del')->name('home_del');

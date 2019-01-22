@@ -126,12 +126,12 @@
                         {{--<td>{{$item->created_at}}</td>--}}
                         {{--<td><span class="glyphicon glyphicon-pencil"></span><a href="#"></a></td>--}}
                         <td style="width: 50px; text-align: center; font-size: small">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#addUserModal">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" {{-- data-target="#addUserModal"--}}>
                                 编辑
                             </button>
                         </td>
                         <td style="width: 50px; text-align: center; font-size: small">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#addUserModal">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal"  onclick="return delete_info({{$item->id}})"  {{--data-target="#addUserModal"--}}>
                                 删除
                             </button>
                         </td>
@@ -206,9 +206,58 @@
 </form>
 @endsection
 
-{{--
 <script type="text/javascript">
-    function query() {
+    
+    function delete_info($id) {
+        if(!$id)
+        {
+            alert('Error！');
+            return false;
+        }
+
+        $.ajax(
+            {
+                url: "/home/del",
+                data:{_method:"DELETE", "_token":"{{csrf_token()}}",  "id":$id},
+                type: "post",
+                dataType:"json",
+                beforeSend:function()
+                {
+                    $("#tip").html("<span style='color:blue'>正在处理...</span>");
+                    return true;
+                },
+                success:function(data)
+                {
+                    if(data > 0)
+                    {
+                        alert('操作成功');
+                        $("#tip").html("<span style='color:blueviolet'>恭喜，删除成功！</span>");
+
+                        // document.location.href='world_system_notice.php'
+                        location.reload();
+                    }
+                    else
+                    {
+                        $("#tip").html("<span style='color:red'>失败，请重试</span>");
+                        alert('操作失败');
+                    }
+                },
+                error:function()
+                {
+                    alert('请求出错');
+                },
+                complete:function()
+                {
+                    // $('#tips').hide();
+                }
+            });
+
+        return false;
+    }
+    
+    
+    
+    /*function query() {
         var categroy = document.getElementById('categroy').value;
         var item = document.getElementById('item').value;
         var currency = document.getElementById('currency').value;
@@ -234,6 +283,5 @@
                 }
             }
         });
-    }
+    }*/
 </script>
---}}

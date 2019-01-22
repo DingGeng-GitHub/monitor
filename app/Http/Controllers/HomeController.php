@@ -59,16 +59,22 @@ class HomeController extends Controller
                 $query->where('system_type', $system_type);
             })
             -> when($ip, function ($query) use ($ip) {
-                $query->where('IP', $ip);
-            })
-            -> when($ip, function ($query) use ($ip) {
-                $query->where('Intranet_ip', $ip);
+               return $query->where('IP', 'like', '%'.$ip.'%')->orwhere('Intranet_ip', 'like', '%'.$ip.'%');
             })
             ->where('status',0)->select()->paginate(10);
 
         return view('home.home',$data);
     }
 
+
+    public function del($id){
+
+        if($id){
+            return false;
+        }
+
+
+    }
 
 
 }
